@@ -1,0 +1,60 @@
+{
+  "user_profile": {
+    "user_id": "U001",
+    "nome": "Usuario Exemplo",
+    "idade": 24,
+    "perfil_comportamental": "equilibrado",
+    "renda_mensal": 3200,
+    "moeda": "BRL"
+  },
+  "gastos_mensais": [
+    {
+      "categoria": "Moradia",
+      "descricao": "Aluguel",
+      "valor": 1200
+    },
+    {
+      "categoria": "Alimentacao",
+      "descricao": "Supermercado",
+      "valor": 650
+    },
+    {
+      "categoria": "Transporte",
+      "descricao": "Transporte publico",
+      "valor": 220
+    },
+    {
+      "categoria": "Lazer",
+      "descricao": "Streaming e passeios",
+      "valor": 300
+    },
+    {
+      "categoria": "Outros",
+      "descricao": "Compras diversas",
+      "valor": 180
+    }
+  ],
+  "limites_categoria": {
+    "Moradia": 1300,
+    "Alimentacao": 700,
+    "Transporte": 300,
+    "Lazer": 250,
+    "Outros": 200
+  },
+  "metas_financeiras": [
+    {
+      "nome": "Reserva de emergencia",
+      "valor_objetivo": 6000,
+      "valor_atual": 1500,
+      "prazo_meses": 12,
+      "status": "em_progresso"
+    },
+    {
+      "nome": "Viagem",
+      "valor_objetivo": 4000,
+      "valor_atual": 800,
+      "prazo_meses": 10,
+      "status": "em_progresso"
+    }
+  ]
+}
