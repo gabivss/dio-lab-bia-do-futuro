@@ -15,45 +15,83 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 | `user_behavior_profiles.json`    | JSON    | Classifica o perfil comportamental do usuário para personalizar sugestões e tom de comunicação |
 | `safe_responses.json`            | JSON    | Contém respostas seguras utilizadas quando há falta de dados, incerteza ou limitação do sistema |
 
-> [!TIP]
-> **Quer um dataset mais robusto?** Você pode utilizar datasets públicos do [Hugging Face](https://huggingface.co/datasets) relacionados a finanças, desde que sejam adequados ao contexto do desafio.
 
 ---
 
 ## Adaptações nos Dados
 
-> Você modificou ou expandiu os dados mockados? Descreva aqui.
+Todos os dados utilizados no agente foram criados manualmente como dados fictícios (mockados), com o objetivo de simular um ambiente realista de planejamento financeiro pessoal.
 
-[Sua descrição aqui]
+As bases foram estruturadas de forma modular, separando:
+
+- Dados do usuário (perfil, renda e gastos)
+- Histórico financeiro mensal
+- Regras financeiras e boas práticas
+- Configuração de alertas
+- Perfis comportamentais
+- Respostas seguras (anti-alucinação)
+
+Essa separação permite maior organização, escalabilidade e controle das informações utilizadas pelo agente.  
+Os dados podem ser facilmente expandidos com novos usuários, novas categorias de gastos ou regras adicionais, sem necessidade de alterar a arquitetura principal do sistema.
 
 ---
 
 ## Estratégia de Integração
 
 ### Como os dados são carregados?
-> Descreva como seu agente acessa a base de conhecimento.
 
-[ex: Os JSON/CSV são carregados no início da sessão e incluídos no contexto do prompt]
+Os arquivos JSON são carregados no início da execução do agente e armazenados em memória para consulta durante a sessão.
+
+Cada base possui uma função específica:
+- `user_financial_data.json` → contexto principal do usuário
+- `financial_rules.json` → regras fixas de orientação
+- `monthly_history.json` → análise de tendência
+- `safe_responses.json` → fallback seguro
+
+Essa abordagem garante organização e evita que todas as informações sejam inseridas diretamente no prompt de uma só vez.
+
+---
 
 ### Como os dados são usados no prompt?
-> Os dados vão no system prompt? São consultados dinamicamente?
 
-[Sua descrição aqui]
+Os dados são consultados dinamicamente de acordo com a solicitação do usuário.
+
+- Informações estruturais e regras gerais são incluídas no *system prompt*, definindo o comportamento e as limitações do agente.
+- Dados específicos do usuário (gastos, metas e histórico) são inseridos no contexto apenas quando necessários para gerar respostas personalizadas.
+- As regras financeiras são utilizadas como base para validação das sugestões.
+- Caso não haja dados suficientes, o agente utiliza respostas definidas em `safe_responses.json`.
+
+Essa estratégia reduz risco de alucinação e mantém as respostas contextualizadas e coerentes.
 
 ---
 
 ## Exemplo de Contexto Montado
 
-> Mostre um exemplo de como os dados são formatados para o agente.
+```text
+Contexto do Usuário:
 
-```
-Dados do Cliente:
-- Nome: João Silva
-- Perfil: Moderado
-- Saldo disponível: R$ 5.000
+Perfil:
+- Nome: Usuário Exemplo
+- Idade: 24 anos
+- Renda mensal: R$ 3.200
+- Perfil comportamental: Equilibrado
 
-Últimas transações:
-- 01/11: Supermercado - R$ 450
-- 03/11: Streaming - R$ 55
-...
+Gastos Mensais:
+- Moradia: R$ 1.200
+- Alimentação: R$ 650
+- Transporte: R$ 220
+- Lazer: R$ 300
+- Outros: R$ 180
+
+Metas Financeiras:
+- Reserva de emergência: R$ 1.500 de R$ 6.000
+- Viagem: R$ 800 de R$ 4.000
+
+Regras Aplicáveis:
+- Gastos com lazer acima de 10% da renda mensal.
+- Reserva de emergência abaixo do recomendado (3 a 6 meses de despesas).
+
+Objetivo da Resposta:
+Gerar sugestões personalizadas para ajuste de gastos e aceleração das metas financeiras, mantendo tom acessível e consultivo.
 ```
+
