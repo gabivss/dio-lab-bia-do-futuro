@@ -1,0 +1,19 @@
+{
+  "alertas": [
+    {
+      "tipo": "excesso_gasto",
+      "nivel": "moderado",
+      "mensagem": "Seus gastos na categoria {categoria} ultrapassaram o limite definido."
+    },
+    {
+      "tipo": "meta_em_risco",
+      "nivel": "alto",
+      "mensagem": "Sua meta {meta} pode nao ser atingida no prazo atual."
+    },
+    {
+      "tipo": "tendencia_aumento_gastos",
+      "nivel": "informativo",
+      "mensagem": "Foi identificado um aumento nos gastos em relacao ao mes anterior."
+    }
+  ]
+}
