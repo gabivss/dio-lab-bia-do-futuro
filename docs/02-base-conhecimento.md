@@ -4,12 +4,16 @@
 
 Descreva se usou os arquivos da pasta `data`, por exemplo:
 
-| Arquivo | Formato | Utilização no Agente |
-|---------|---------|---------------------|
-| `historico_atendimento.csv` | CSV | Contextualizar interações anteriores |
-| `perfil_investidor.json` | JSON | Personalizar recomendações |
-| `produtos_financeiros.json` | JSON | Sugerir produtos adequados ao perfil |
-| `transacoes.csv` | CSV | Analisar padrão de gastos do cliente |
+
+| Arquivo                         | Formato | Utilização no Agente |
+|----------------------------------|---------|----------------------|
+| `user_financial_data.json`       | JSON    | Armazena perfil do usuário, renda mensal, gastos por categoria, limites definidos e metas financeiras |
+| `monthly_history.json`           | JSON    | Analisa o histórico financeiro mensal para identificar tendências, variações de gastos e padrões sazonais |
+| `financial_rules.json`           | JSON    | Define regras financeiras e boas práticas utilizadas para orientar respostas e evitar alucinações |
+| `goals_progress.json`            | JSON    | Acompanha o progresso das metas financeiras e permite sugestões proativas de ajuste |
+| `alerts_config.json`             | JSON    | Padroniza alertas automáticos sobre excesso de gastos e risco no cumprimento de metas |
+| `user_behavior_profiles.json`    | JSON    | Classifica o perfil comportamental do usuário para personalizar sugestões e tom de comunicação |
+| `safe_responses.json`            | JSON    | Contém respostas seguras utilizadas quando há falta de dados, incerteza ou limitação do sistema |
 
 > [!TIP]
 > **Quer um dataset mais robusto?** Você pode utilizar datasets públicos do [Hugging Face](https://huggingface.co/datasets) relacionados a finanças, desde que sejam adequados ao contexto do desafio.
